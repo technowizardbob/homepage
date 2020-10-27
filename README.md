@@ -20,7 +20,7 @@ $ touch USERSNAME_sql_lite3.db
 
 $ sudo chown www-data:www-data USERNAME_sql_lite3.db
 
-$ sudo chmod 664 USERNAME_sql_lite3.db
+$ sudo chmod 660 USERNAME_sql_lite3.db
 
 To setup the password of Temp: goto http://127.0.0.1/homepage/?name=USERNAME&new=true
 
