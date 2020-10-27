@@ -21,8 +21,8 @@ if (! $loggedin) {
 $name = $_POST['hname'] ?? false;
 $href = $_POST['href'] ?? false;
 $id = $_GET['id'] ?? 0;
-$delete = $_POST['delete'] ?? false;
-$private = $_POST['private'] ?? false;
+$delete = $_POST['delete'] ?? "false";
+$private = $_POST['private'] ?? "false";
 
 if ($name === false || $href === false || $id == 0) {
     try {
