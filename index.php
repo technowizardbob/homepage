@@ -50,7 +50,7 @@ $edit = $_GET['edit'] ?? false;
 
 foreach($rows as $row) {
 	$edit_row = ($edit === false) ? "": "<a href=\"update.php?id={$row['link_id']}\">(Edit)</a></li>";
-    echo "<li>| &nbsp; <a href=\"{$row['link_href']}\">{$row['link_name']}</a> {$edit_row} &nbsp; ";
+    echo "<li>| &nbsp; <a href=\"{$row['link_href']}\" target=\"_blank\">{$row['link_name']}</a> {$edit_row} &nbsp; ";
 }
 
 ?>
