@@ -24,6 +24,13 @@
 </center>
   
 <?php
+
+/** 
+ * @author Robert Strutts <Robert@TryingToScale.com>
+ * @copyright Copyright (c) 2022, Robert Strutts.
+ * @license MIT
+ */
+
 if ($loggedin) {
   echo '<a href="insert.php">Add new Link</a> | <a href="index.php?edit=true">Edit Links</a> | ';
   echo '<a href="change_pwd.php?name='.$username.'">Change Password</a> | ';
@@ -49,7 +56,7 @@ try {
 $edit = $_GET['edit'] ?? false;
 
 foreach($rows as $row) {
-	$edit_row = ($edit === false) ? "": "<a href=\"update.php?id={$row['link_id']}\">(Edit)</a></li>";
+	$edit_row = ($edit === false) ? "</li>": "<a href=\"update.php?id={$row['link_id']}\">(Edit)</a></li>";
     echo "<li>| &nbsp; <a href=\"{$row['link_href']}\" target=\"_blank\">{$row['link_name']}</a> {$edit_row} &nbsp; ";
 }
 

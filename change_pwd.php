@@ -1,5 +1,11 @@
 <?php
 
+/** 
+ * @author Robert Strutts <Robert@TryingToScale.com>
+ * @copyright Copyright (c) 2022, Robert Strutts.
+ * @license MIT
+ */
+
 require "session.php";
 require "db.inc.php";
 
