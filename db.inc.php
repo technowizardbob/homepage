@@ -25,19 +25,60 @@ try {
   echo $e->getMessage();
 }
 
+if (isset($_GET['migrate'])) {
+
+  try {
+    $sql = "ALTER TABLE links ADD cat_id INTEGER;";
+    $pdo->query($sql);
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+  try {
+    $sql = "ALTER TABLE links ADD description TEXT;";
+    $pdo->query($sql);
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+
+  try {
+    $sql = "CREATE TABLE IF NOT EXISTS cats (
+            id   INTEGER PRIMARY KEY AUTOINCREMENT,      
+            category TEXT    NOT NULL
+      );";
+    $pdo->query($sql);
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+
+  exit;
+}
+
+
 if (isset($_GET['new'])) {
   try {
     $sql = "CREATE TABLE IF NOT EXISTS links (
             link_id   INTEGER PRIMARY KEY AUTOINCREMENT,
             link_name TEXT    NOT NULL,
             link_href TEXT    NOT NULL,
+            cat_id INTEGER,
+            description TEXT,
             private TEXT      NULL
       );";
     $pdo->query($sql);
   } catch (PDOException $e) {
     echo $e->getMessage();
   }
-  
+
+  try {
+    $sql = "CREATE TABLE IF NOT EXISTS cats (
+            id   INTEGER PRIMARY KEY AUTOINCREMENT,      
+            category TEXT    NOT NULL
+      );";
+    $pdo->query($sql);
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+  }
+
   try {
     $sql = "CREATE TABLE IF NOT EXISTS pwd (
             id   INTEGER PRIMARY KEY AUTOINCREMENT,      

@@ -6,7 +6,6 @@
  * @license MIT
  */
 
-require "session.php";
 require "db.inc.php";
 
 $pwd = $_POST['pwd'] ?? false;

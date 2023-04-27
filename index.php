@@ -33,6 +33,7 @@
 
 if ($loggedin) {
   echo '<a href="insert.php">Add new Link</a> | <a href="index.php?edit=true">Edit Links</a> | ';
+  echo '<a href="update_cat.php?edit=true">Edit categories</a> | ';
   echo '<a href="change_pwd.php?name='.$username.'">Change Password</a> | ';
   echo '<a href="logout.php">Log out</a>';
 } else {
@@ -44,20 +45,43 @@ if ($loggedin) {
 
 $hide = ($loggedin) ? "" : " WHERE private=\"false\" ";
 
+function get_cat(int $id): string {
+  try {
+    $sql = "SELECT category FROM cats WHERE id=:id LIMIT 1";
+    $pdostmt = $GLOBALS['pdo']->prepare($sql);
+    $pdostmt->execute(["id"=>$id]);
+    $r = $pdostmt->fetch(\PDO::FETCH_ASSOC);
+    if (empty($r['category'])) {
+      return "Misc.";
+    }
+    return (string) $r['category'];
+  } catch (\PDOException $e) {
+    echo $e->getMessage();
+  }
+}
+
 try {
-    $sql = "SELECT link_id, link_name, link_href FROM links {$hide} ORDER BY link_name ASC";
+    $sql = "SELECT cat_id, link_id, link_name, link_href, `description` FROM links {$hide} ORDER BY link_name ASC";
     $pdostmt = $pdo->prepare($sql);
     $pdostmt->execute();
-    $rows = $pdostmt->fetchAll(PDO::FETCH_ASSOC);
+    $a = [];
+    while($r = $pdostmt->fetch(\PDO::FETCH_ASSOC)) {
+      $cid = $r['cat_id']; 
+      unset($r['cat_id']);
+      $a[$cid][] = $r;
+    }
 } catch (\PDOException $e) {
     echo $e->getMessage();
 }
 
 $edit = $_GET['edit'] ?? false;
 
-foreach($rows as $row) {
-	$edit_row = ($edit === false) ? "</li>": "<a href=\"update.php?id={$row['link_id']}\">(Edit)</a></li>";
-    echo "<li>| &nbsp; <a href=\"{$row['link_href']}\" target=\"_blank\">{$row['link_name']}</a> {$edit_row} &nbsp; ";
+foreach($a as $id=>$data) {
+  echo "<h4>" . get_cat($id) . "</h4>";
+  foreach($data as $row) {
+	    $edit_row = ($edit === false) ? "</li>": "<a href=\"update.php?id={$row['link_id']}\">(Edit)</a></li>";
+      echo "<li>| &nbsp; <a href=\"{$row['link_href']}\" title=\"{$row['description']}\" target=\"_blank\">{$row['link_name']}</a> {$edit_row} &nbsp; ";
+  }
 }
 
 ?>
