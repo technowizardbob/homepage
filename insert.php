@@ -41,7 +41,7 @@ if ($name === false || $href === false) {
             <select id="cat" name="cat">
 <?php
             foreach($query as $q) {
-                echo "<option value=\"$q->id\">$q->category</option>";
+                echo "<option value=\"{$q['id']}\">{$q['category']}</option>";
             }
 ?>            
             </select>
