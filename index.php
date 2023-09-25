@@ -26,8 +26,8 @@
 <?php
 
 /** 
- * @author Robert Strutts <Robert@TryingToScale.com>
- * @copyright Copyright (c) 2022, Robert Strutts.
+ * @author Bob S. <Tips@TechnoWizardBob.com>
+ * @copyright Copyright (c) 2022, Bob S.
  * @license MIT
  */
 
