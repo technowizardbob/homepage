@@ -47,7 +47,7 @@ if ($loggedin && $_SESSION['last'] == $username &&
  */
 
 if ($loggedin) {
-  echo '<a href="insert.php">Add new Link</a> | <a href="index.php?edit=true">Edit Links</a> | ';
+  echo '<a href="insert.php">Add new Link</a> | <a href="index.php'.bust().'&edit=true">Edit Links</a> | ';
   echo '<a href="update_cat.php?edit=true">Edit categories</a> | ';
   echo '<a href="change_pwd.php?name='.$username.'">Change Password</a> | ';
   echo '<a href="logout.php">Log out</a>';
