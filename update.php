@@ -82,6 +82,8 @@ if ($name === false || $href === false || $id == 0) {
         </form>        
     <?php
 } else {
+  $_SESSION['last'] = false;
+  $_SESSION['last_modified_time'] = time();
 
   if ($delete === "true") {
       try {
@@ -104,7 +106,7 @@ if ($name === false || $href === false || $id == 0) {
         echo $e->getMessage();
     }
   }
-    echo "<a href=\"index.php\">Back to Home Page</a>";
+    echo "<a href=\"index.php".bust()."\">Back to Home Page</a>";
 }
 ?>
     </body>

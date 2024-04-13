@@ -41,7 +41,8 @@ if ($cat === false) {
         echo $e->getMessage();
     }
 
-    echo "<a href=\"index.php\">Back to Home Page</a>";
+    echo "<a href=\"index.php".bust()."\">Back to Home Page</a>";
+    $_SESSION['last'] = false;
 }
 ?>
     </body>

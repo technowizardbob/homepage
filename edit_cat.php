@@ -10,14 +10,12 @@
   </head>
     <body>
 <?php
-
+require "db.inc.php";
 /** 
  * @author Bob S. <Tips@TechnoWizardBob.com>
  * @copyright Copyright (c) 2022, Bob S.
  * @license MIT
  */
-
-require "db.inc.php";
 
 if (! $loggedin) {
   echo "Please log in!";
@@ -50,6 +48,8 @@ if ($cat === false || $id == 0) {
         </form>        
     <?php
 } else {
+  $_SESSION['cat'] = false;
+  $_SESSION['last_modified_time'] = time();
 
   if ($delete === "true") {
       try {
@@ -72,7 +72,7 @@ if ($cat === false || $id == 0) {
         echo $e->getMessage();
     }
   }
-    echo "<a href=\"index.php\">Back to Home Page</a>";
+    echo "<a href=\"index.php".bust()."\">Back to Home Page</a>";
 }
 ?>
     </body>

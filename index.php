@@ -1,3 +1,19 @@
+<?php
+require "db.inc.php";
+if ($loggedin && $_SESSION['last'] == $username && 
+  $_SESSION['cat'] == true && 
+  $_SESSION['links'] == true) {
+  // If the username is the same, allow caching
+  cache();
+} else {
+  diable_cache();
+  if ($username !== false) {
+    $_SESSION['last'] = $username;
+  }
+  $_SESSION['cat'] = true;
+  $_SESSION['links'] = true;
+}
+?>
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -13,8 +29,7 @@
     </style>
   </head>
   <body style="background-color: rgb(255, 255, 255);">   
-<?php require "db.inc.php"; ?>   
-    
+   
 <div style="text-align: center;"><font face="Times New Roman, Times, serif"><b><font color="#cc0000" face="Courier New, Courier, mono" size="+1"><?= (! empty($username)) ? ucfirst($username) . ", " : "" ?>Welcome to your Home Page.</font></b></font></div>
 <center>
 <form action="https://www.duckduckgo.com/" method="get"><font face="Times New Roman, Times, serif"><b><font color="#cc0000" face="Courier New, Courier, mono" size="+1">
@@ -79,7 +94,7 @@ $edit = $_GET['edit'] ?? false;
 foreach($a as $id=>$data) {
   echo "<h4>" . get_cat($id) . "</h4>";
   foreach($data as $row) {
-	    $edit_row = ($edit === false) ? "</li>": "<a href=\"update.php?id={$row['link_id']}\">(Edit)</a></li>";
+	    $edit_row = ($edit === false) ? "</li>": "<a href=\"update.php".bust()."&id={$row['link_id']}\">(Edit)</a></li>";
       echo "<li>| &nbsp; <a href=\"{$row['link_href']}\" title=\"{$row['description']}\" target=\"_blank\">{$row['link_name']}</a> {$edit_row} &nbsp; ";
   }
 }

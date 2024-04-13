@@ -1,3 +1,7 @@
+<?php
+require "db.inc.php";
+diable_cache();
+?>
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -21,9 +25,6 @@ table, th, td {
  * @copyright Copyright (c) 2022, Bob S.
  * @license MIT
  */
-
-require "db.inc.php";
-
 if (! $loggedin) {
   echo "Please log in!";
   exit;
@@ -49,6 +50,6 @@ if (! $loggedin) {
         echo "|";
 ?> 
 <br/><br/><hr>       
-<p><a href="/">Back to home</a></p>
+<p><a href="/<?= bust(); ?>">Back to home</a></p>
     </body>
 </html>    

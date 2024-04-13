@@ -31,6 +31,11 @@ if ($pwd === false) {
   $success = is_pwd($pwd);  
   if ($success) {
     $_SESSION['username'] = $username;
+    $_SESSION['last'] = $username;
+    $_SESSION['cat'] = true;
+    $_SESSION['links'] = true;
+    $_SESSION['last_modified_time'] = time();
+  
     if ($_POST['private'] == "true") {
         setcookie("home", $username, strtotime( '+30 days' ) );
     }
