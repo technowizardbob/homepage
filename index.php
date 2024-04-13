@@ -28,7 +28,7 @@ if ($loggedin && $_SESSION['last'] == $username &&
         ul li { display: inline; }
     </style>
   </head>
-  <body style="background-color: rgb(255, 255, 255);">   
+  <body style="background: linear-gradient(135deg, #a9dfbf, #dcdcdc, #a9dfbf);">   
    
 <div style="text-align: center;"><font face="Times New Roman, Times, serif"><b><font color="#cc0000" face="Courier New, Courier, mono" size="+1"><?= (! empty($username)) ? ucfirst($username) . ", " : "" ?>Welcome to your Home Page.</font></b></font></div>
 <center>
