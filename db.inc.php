@@ -8,7 +8,17 @@
 
 require "session.php";
 
-$name = str_replace("..", "", ucfirst($username));
+// Convert the string to ASCII, ignoring any non-ASCII characters
+$ascii_only = mb_convert_encoding($username, 'ASCII', 'UTF-8');
+
+if (str_contains($ascii_only, ':') || str_contains($ascii_only, '..')) {
+   echo "Invalid name!"; // File System Stream or Up level Attack!
+   exit;
+}
+
+// Strip out non a-z chrs
+$name = preg_replace('/[^a-z]/', '', strtolower($ascii_only));
+$name = str_replace("..", "", ucfirst($name));
 $file = "{$name}_sql_lite3.db";
 
 $exists = (file_exists(__DIR__."/".$file)) ? true : false;
