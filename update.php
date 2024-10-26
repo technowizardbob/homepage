@@ -67,7 +67,7 @@ if ($name === false || $href === false || $id == 0) {
             </select>
 
             <label for="name">Enter Name of Link</label>
-            <input type="text" name="hname" id="hname" value="<?= $row['link_name'] ?>" maxlength="25"/>
+            <input type="text" name="hname" id="hname" value="<?= $row['link_name'] ?>" maxlength="40"/>
             <label for="href">Hyperlink</label>
             <input type="text" name="href" id="href" value="<?= $row['link_href'] ?>" maxlength="255"/>
             <label for="desc">Description</label>

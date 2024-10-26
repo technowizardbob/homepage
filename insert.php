@@ -46,7 +46,7 @@ if ($name === false || $href === false) {
 ?>            
             </select>
             <label for="name">Enter Name of Link</label>
-            <input type="text" name="hname" id="hname" maxlength="25"/>
+            <input type="text" name="hname" id="hname" maxlength="40"/>
             <label for="href">Hyperlink</label>
             <input type="text" name="href" id="href" maxlength="255" placeholder="https://" />
             <label for="desc">Description</label>
